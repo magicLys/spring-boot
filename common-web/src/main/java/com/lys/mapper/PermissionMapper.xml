@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lys.dao.PermissionDao" >
+  <resultMap id="BaseResultMap" type="com.lys.entity.PermissionEntity" >
+    <id column="PERMS_ID" property="permsId" jdbcType="VARCHAR" />
+    <result column="PERMS_NAME" property="permsName" jdbcType="VARCHAR" />
+    <result column="PERMS_DESC" property="permsDesc" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="PERMS_ORDER" property="permsOrder" jdbcType="DECIMAL" />
+    <result column="PERMS_LEVEL" property="permsLevel" jdbcType="DECIMAL" />
+    <result column="ACTION" property="action" jdbcType="VARCHAR" />
+    <result column="AS_MENU" property="asMenu" jdbcType="CHAR" />
+    <result column="AS_ACCESS" property="asAccess" jdbcType="CHAR" />
+    <result column="LOCK_FLAG" property="lockFlag" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PERMS_ID, PERMS_NAME, PERMS_DESC, PARENT_ID, PERMS_ORDER, PERMS_LEVEL, ACTION, AS_MENU, 
+    AS_ACCESS, LOCK_FLAG, CREATE_DATE, CREATE_USER, UPDATE_DATE, UPDATE_USER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_permission
+    where PERMS_ID = #{permsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_permission
+    where PERMS_ID = #{permsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lys.entity.PermissionEntity" >
+    insert into tb_permission (PERMS_ID, PERMS_NAME, PERMS_DESC, 
+      PARENT_ID, PERMS_ORDER, PERMS_LEVEL, 
+      ACTION, AS_MENU, AS_ACCESS, 
+      LOCK_FLAG, CREATE_DATE, CREATE_USER, 
+      UPDATE_DATE, UPDATE_USER)
+    values (#{permsId,jdbcType=VARCHAR}, #{permsName,jdbcType=VARCHAR}, #{permsDesc,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=VARCHAR}, #{permsOrder,jdbcType=DECIMAL}, #{permsLevel,jdbcType=DECIMAL}, 
+      #{action,jdbcType=VARCHAR}, #{asMenu,jdbcType=CHAR}, #{asAccess,jdbcType=CHAR}, 
+      #{lockFlag,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lys.entity.PermissionEntity" >
+    insert into tb_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permsId != null" >
+        PERMS_ID,
+      </if>
+      <if test="permsName != null" >
+        PERMS_NAME,
+      </if>
+      <if test="permsDesc != null" >
+        PERMS_DESC,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="permsOrder != null" >
+        PERMS_ORDER,
+      </if>
+      <if test="permsLevel != null" >
+        PERMS_LEVEL,
+      </if>
+      <if test="action != null" >
+        ACTION,
+      </if>
+      <if test="asMenu != null" >
+        AS_MENU,
+      </if>
+      <if test="asAccess != null" >
+        AS_ACCESS,
+      </if>
+      <if test="lockFlag != null" >
+        LOCK_FLAG,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permsId != null" >
+        #{permsId,jdbcType=VARCHAR},
+      </if>
+      <if test="permsName != null" >
+        #{permsName,jdbcType=VARCHAR},
+      </if>
+      <if test="permsDesc != null" >
+        #{permsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="permsOrder != null" >
+        #{permsOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="permsLevel != null" >
+        #{permsLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="asMenu != null" >
+        #{asMenu,jdbcType=CHAR},
+      </if>
+      <if test="asAccess != null" >
+        #{asAccess,jdbcType=CHAR},
+      </if>
+      <if test="lockFlag != null" >
+        #{lockFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lys.entity.PermissionEntity" >
+    update tb_permission
+    <set >
+      <if test="permsName != null" >
+        PERMS_NAME = #{permsName,jdbcType=VARCHAR},
+      </if>
+      <if test="permsDesc != null" >
+        PERMS_DESC = #{permsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="permsOrder != null" >
+        PERMS_ORDER = #{permsOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="permsLevel != null" >
+        PERMS_LEVEL = #{permsLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="action != null" >
+        ACTION = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="asMenu != null" >
+        AS_MENU = #{asMenu,jdbcType=CHAR},
+      </if>
+      <if test="asAccess != null" >
+        AS_ACCESS = #{asAccess,jdbcType=CHAR},
+      </if>
+      <if test="lockFlag != null" >
+        LOCK_FLAG = #{lockFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PERMS_ID = #{permsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lys.entity.PermissionEntity" >
+    update tb_permission
+    set PERMS_NAME = #{permsName,jdbcType=VARCHAR},
+      PERMS_DESC = #{permsDesc,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      PERMS_ORDER = #{permsOrder,jdbcType=DECIMAL},
+      PERMS_LEVEL = #{permsLevel,jdbcType=DECIMAL},
+      ACTION = #{action,jdbcType=VARCHAR},
+      AS_MENU = #{asMenu,jdbcType=CHAR},
+      AS_ACCESS = #{asAccess,jdbcType=CHAR},
+      LOCK_FLAG = #{lockFlag,jdbcType=CHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR}
+    where PERMS_ID = #{permsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

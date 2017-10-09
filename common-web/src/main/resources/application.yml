@@ -1,0 +1,39 @@
+#容器配置项
+server:
+  #端口号
+  port: 8080
+  #修改进入DispatcherServlet的规则为：*.html
+  #servlet-path: "*.action"
+  
+#日志配置项
+logging:
+  # 日志文件,绝对路径或相对路径,Spring Boot中的logging.path和logging.file这2个属性，只需要配置其中之一即可，如果同时配置，则使用logging.file属性。
+  #file: 
+  # 保存日志文件目录路径 
+  #path: 
+  # 日志配置文件,Spring Boot默认使用classpath路径下的日志配置文件,如:logback.xml  
+  #config: 
+  # 日志级别
+  level:  
+    # 配置spring web日志级别
+    org.springframework.web: INFO
+    
+    
+#spring相关配置   
+spring:
+  #数据源配置
+  datasource: 
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.109:3306/ssm?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 1111
+      
+#mybatis配置   
+mybatis:
+  config-locations: classpath:mybatis-config.xml
+  mapper-locations: classpath:com/lys/**/mapper/*.xml
+  type-aliases-package: com.lys.**.entity
+
+
+    
+    
